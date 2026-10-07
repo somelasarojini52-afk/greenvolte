@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenVolt | Waste To Energy</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f7f3; 
+    color:#103d2b;
+}
+
+/* ================= AUTH PAGES ================= */
+
+.auth-page{
+    min-height:100vh;
+    display:none;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(rgba(16,61,43,.75),rgba(23,107,69,.75)),
+    url("https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1600&q=80");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.auth-page.active{
+    display:flex;
+}
+
+.auth-box{
+    width:360px;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 10px 40px rgba(0,0,0,.3);
+}
+
+.auth-logo{
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+    color:#176b45;
+    margin-bottom:8px;
+}
+
+.auth-title{
+    text-align:center;
+    margin-bottom:25px;
+    color:#555;
+}
+
+.auth-box label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:bold;
+}
+
+.auth-box input{
+    width:100%;
+    padding:13px;
+    margin-bottom:17px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.auth-box input:focus{
+    outline:none;
+    border:2px solid #176b45;
+}
+
+.auth-btn{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:8px;
+    background:#176b45;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.auth-btn:hover{
+    background:#103d2b;
+}
+
+.auth-link{
+    text-align:center;
+    margin-top:18px;
+}
+
+.auth-link a{
+    color:#176b45;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    background:#176b45;
+    color:white;
+    padding:15px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+nav{
+    display:flex;
+    gap:22px;
+    align-items:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#c7ef77;
+}
+
+.logout-btn{
+    background:#c7ef77;
+    color:#103d2b;
+    border:none;
+    padding:9px 15px;
+    border-radius:20px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:500px;
+
+    background:
+    linear-gradient(rgba(0,60,40,.65),rgba(0,60,40,.65)),
+    url("https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=1600&q=80");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    color:white;
+    padding:30px;
+}
+
+.hero-content h1{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.hero-content p{
+    font-size:21px;
+    margin-bottom:25px;
+}
+
+.btn{
+    display:inline-block;
+    padding:13px 25px;
+    background:#c7ef77;
+    color:#103d2b;
+    border-radius:25px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* ================= COMMON ================= */
+
+section{
+    padding:70px 7%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.section-title h2{
+    font-size:35px;
+    color:#176b45;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#738078;
+}
+
+/* ================= SLIDER ================= */
+
+.slider-section{
+    background:white;
+}
+
+.slider{
+    max-width:1100px;
+    height:500px;
+    margin:auto;
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.slides{
+    display:flex;
+    width:100%;
+    height:100%;
+    transition:transform .6s ease;
+}
+
+.slide{
+    min-width:100%;
+    height:100%;
+    position:relative;
+}
+
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.slide-content{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    padding:35px;
+    color:white;
+    background:linear-gradient(transparent,rgba(0,0,0,.8));
+}
+
+.slide-content h3{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.slider-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.8);
+    color:#176b45;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.prev{
+    left:20px;
+}
+
+.next{
+    right:20px;
+}
+
+.dots{
+    position:absolute;
+    bottom:18px;
+    right:25px;
+    display:flex;
+    gap:8px;
+}
+
+.dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:white;
+    opacity:.5;
+    cursor:pointer;
+}
+
+.dot.active{
+    opacity:1;
+    background:#c7ef77;
+}
+
+.progress-container{
+    height:5px;
+    background:rgba(255,255,255,.3);
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#c7ef77;
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card-icon{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    color:#176b45;
+    margin-bottom:10px;
+}
+
+.number{
+    font-size:28px;
+    font-weight:bold;
+}
+
+/* ================= TECHNOLOGY ================= */
+
+.technology{
+    background:#eef5ee;
+}
+
+.tech-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+}
+
+.tech-image img{
+    width:100%;
+    height:400px;
+    object-fit:cover;
+    border-radius:20px;
+}
+
+.steps{
+    display:grid;
+    gap:15px;
+}
+
+.step{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    display:flex;
+    gap:15px;
+    align-items:center;
+}
+
+.step-number{
+    min-width:45px;
+    height:45px;
+    background:#176b45;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+/* ================= IMAGE CARDS ================= */
+
+.image-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.image-card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.image-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.image-card-content{
+    padding:20px;
+}
+
+.image-card-content h3{
+    color:#176b45;
+    margin-bottom:8px;
+}
+
+/* ================= CALCULATOR ================= */
+
+.calculator-section{
+    background:white;
+}
+
+.calculator{
+    max-width:600px;
+    margin:auto;
+    background:#f5f7f3;
+    padding:35px;
+    border-radius:20px;
+}
+
+.calculator label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+.calculator select,
+.calculator input{
+    width:100%;
+    padding:13px;
+    margin-bottom:20px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.calculate-btn{
+    width:100%;
+    padding:14px;
+    background:#176b45;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.result{
+    margin-top:25px;
+    padding:20px;
+    background:#e5f5df;
+    border-radius:10px;
+    display:none;
+}
+
+/* ================= ENVIRONMENT ================= */
+
+.environment{
+    background:#eef5ee;
+}
+
+.environment-container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+}
+
+.environment input{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+.environment button{
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:#176b45;
+    color:white;
+    cursor:pointer;
+}
+
+.air-result{
+    margin-top:20px;
+    line-height:2;
+}
+
+/* ================= BENEFITS ================= */
+
+.benefits{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.benefit{
+    background:white;
+    padding:30px;
+    text-align:center;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.benefit-icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.benefit h3{
+    color:#176b45;
+    margin-bottom:10px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#103d2b;
+    color:white;
+    text-align:center;
+    padding:35px 20px;
+}
+
+footer p{
+    color:#c8d5ce;
+    margin-top:8px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+    .dashboard{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .tech-container{
+        grid-template-columns:1fr;
+    }
+
+    .image-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .benefits{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    header{
+        flex-direction:column;
+        gap:12px;
+    }
+
+    nav{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero-content h1{
+        font-size:38px;
+    }
+
+    .slider{
+        height:350px;
+    }
+
+    .dashboard,
+    .image-grid,
+    .benefits{
+        grid-template-columns:1fr;
+    }
+
+    .auth-box{
+        width:90%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =================================================
+     LOGIN PAGE
+================================================= -->
+
+<div class="auth-page active" id="loginPage">
+
+    <div class="auth-box">
+
+        <div class="auth-logo">
+            ♻ GreenVolt
+        </div>
+
+        <h3 class="auth-title">
+            Login to your account
+        </h3>
+
+
+        <form onsubmit="login(event)">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Enter your email"
+                required
+            >
+
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter your password"
+                required
+            >
+
+
+            <button class="auth-btn" type="submit">
+                Login
+            </button>
+
+        </form>
+
+
+        <div class="auth-link">
+
+            Don't have an account?
+
+            <a onclick="showSignup()">
+                Sign Up
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     SIGNUP PAGE
+================================================= -->
+
+<div class="auth-page" id="signupPage">
+
+    <div class="auth-box">
+
+        <div class="auth-logo">
+            ♻ GreenVolt
+        </div>
+
+        <h3 class="auth-title">
+            Create your account
+        </h3>
+
+
+        <form onsubmit="signup(event)">
+
+            <label>Name</label>
+
+            <input
+                type="text"
+                id="signupName"
+                placeholder="Enter your name"
+                required
+            >
+
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                id="signupEmail"
+                placeholder="Enter your email"
+                required
+            >
+
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="signupPassword"
+                placeholder="Create password"
+                required
+            >
+
+
+            <label>Confirm Password</label>
+
+            <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm password"
+                required
+            >
+
+
+            <button class="auth-btn" type="submit">
+                Create Account
+            </button>
+
+        </form>
+
+
+        <div class="auth-link">
+
+            Already have an account?
+
+            <a onclick="showLogin()">
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     MAIN WEBSITE
+================================================= -->
+
+<div id="mainWebsite" style="display:none;">
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        ♻ GreenVolt
+    </div>
+
+    <nav>
+
+        <a href="#home">Home</a>
+
+        <a href="#slider">Gallery</a>
+
+        <a href="#dashboard">Dashboard</a>
+
+        <a href="#technology">Technology</a>
+
+        <a href="#calculator">Calculator</a>
+
+        <a href="#environment">Environment</a>
+
+        <button class="logout-btn" onclick="logout()">
+            Logout
+        </button>
+
+    </nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>
+            Waste Today. Energy Tomorrow.
+        </h1>
+
+        <p>
+            Turning waste into clean and useful energy
+            for a greener future.
+        </p>
+
+        <a href="#slider" class="btn">
+            Explore Project
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- IMAGE SLIDER -->
+
+<section class="slider-section" id="slider">
+
+    <div class="section-title">
+
+        <h2>
+            Waste To Energy Gallery
+        </h2>
+
+        <p>
+            Explore waste management and energy generation.
+        </p>
+
+    </div>
+
+
+    <div class="slider">
+
+        <div class="slides" id="slides">
+
+
+            <div class="slide">
+
+                <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1600&q=80">
+
+                <div class="slide-content">
+
+                    <h3>
+                        Waste Management
+                    </h3>
+
+                    <p>
+                        Proper waste collection creates a cleaner environment.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="slide">
+
+                <img src="https://images.unsplash.com/photo-1528323273322-d81458248d40?auto=format&fit=crop&w=1600&q=80">
+
+                <div class="slide-content">
+
+                    <h3>
+                        Recycling
+                    </h3>
+
+                    <p>
+                        Recyclable materials can be separated and reused.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="slide">
+
+                <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?auto=format&fit=crop&w=1600&q=80">
+
+                <div class="slide-content">
+
+                    <h3>
+                        Waste Collection
+                    </h3>
+
+                    <p>
+                        Collection is the first step in waste management.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="slide">
+
+                <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1600&q=80">
+
+                <div class="slide-content">
+
+                    <h3>
+                        Energy Generation
+                    </h3>
+
+                    <p>
+                        Waste can be converted into useful electricity.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="slide">
+
+                <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=1600&q=80">
+
+                <div class="slide-content">
+
+                    <h3>
+                        Clean Energy
+                    </h3>
+
+                    <p>
+                        Renewable energy supports a cleaner future.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="slide">
+
+                <!-- <img src="https://images.unsplash.com/photo-1441974231531-c6227db76e6e?auto=format&fit=crop&w=1600&q=80"> -->
+                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTniDfciDycxrTeRYliXm6XWUSARQPjn08Fq_zqn-WKtQ&s=10">
+
+                <div class="slide-content">
+
+                    <h3>
+                        Green Environment
+                    </h3>
+
+                    <p>
+                        Sustainable waste management protects nature.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button class="slider-btn prev" onclick="previousSlide()">
+            ❮
+        </button>
+
+        <button class="slider-btn next" onclick="nextSlide()">
+            ❯
+        </button>
+
+
+        <div class="dots">
+
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
+            <span class="dot" onclick="goToSlide(3)"></span>
+            <span class="dot" onclick="goToSlide(4)"></span>
+            <span class="dot" onclick="goToSlide(5)"></span>
+
+        </div>
+
+
+        <div class="progress-container">
+
+            <div class="progress" id="progress"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard">
+
+    <div class="section-title">
+
+        <h2>
+            Project Dashboard
+        </h2>
+
+        <p>
+            Monitor waste processing and energy generation.
+        </p>
+
+    </div>
+
+
+    <div class="dashboard">
+
+        <div class="card">
+
+            <div class="card-icon">
+                ♻️
+            </div>
+
+            <h3>
+                Waste Processed
+            </h3>
+
+            <div class="number" id="wasteTotal">
+                0 kg
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                ⚡
+            </div>
+
+            <h3>
+                Energy Generated
+            </h3>
+
+            <div class="number" id="energyTotal">
+                0 kWh
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                🌱
+            </div>
+
+            <h3>
+                CO₂ Saved
+            </h3>
+
+            <div class="number" id="co2Total">
+                0 kg
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                ✅
+            </div>
+
+            <h3>
+                System Status
+            </h3>
+
+            <div class="number">
+                Ready
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TECHNOLOGY -->
+
+<section class="technology" id="technology">
+
+    <div class="section-title">
+
+        <h2>
+            Waste To Energy Technology
+        </h2>
+
+        <p>
+            How waste is converted into useful energy.
+        </p>
+
+    </div>
+
+
+    <div class="tech-container">
+
+        <div class="tech-image">
+
+            <img
+                src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80"
+                alt="Energy Facility"
+            >
+
+        </div>
+
+
+        <div class="steps">
+
+            <div class="step">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <div>
+
+                    <h3>
+                        Waste Collection
+                    </h3>
+
+                    <p>
+                        Waste is collected from different locations.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <div>
+
+                    <h3>
+                        Segregation
+                    </h3>
+
+                    <p>
+                        Waste is separated into different categories.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <div>
+
+                    <h3>
+                        Conversion
+                    </h3>
+
+                    <p>
+                        Suitable waste is converted into energy.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    4
+                </div>
+
+                <div>
+
+                    <h3>
+                        Power Generation
+                    </h3>
+
+                    <p>
+                        Recovered energy can be used for electricity.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- IMAGE CARDS -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>Our Waste Solutions</h2>
+
+        <p>
+            Different waste sources can support sustainable energy.
+        </p>
+
+    </div>
+
+
+    <div class="image-grid">
+
+
+        <!-- ORGANIC WASTE -->
+
+        <div class="image-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=900&q=80"
+                alt="Organic Waste"
+            >
+
+            <div class="image-card-content">
+
+                <h3>Organic Waste</h3>
+
+                <p>
+                    Organic waste can be processed using
+                    suitable biological methods.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RECYCLABLE WASTE -->
+
+        <div class="image-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1604187351574-c75ca79f5807?auto=format&fit=crop&w=900&q=80"
+                alt="Recyclable Waste"
+            >
+
+            <div class="image-card-content">
+
+                <h3>Recyclable Waste</h3>
+
+                <p>
+                    Recyclable materials can be recovered
+                    and reused.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ENERGY GENERATION -->
+
+        <div class="image-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=900&q=80"
+                alt="Energy Generation"
+            >
+
+            <div class="image-card-content">
+
+                <h3>Energy Generation</h3>
+
+                <p>
+                    Waste recovery can support electricity
+                    generation.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CALCULATOR -->
+
+<section class="calculator-section" id="calculator">
+
+    <div class="section-title">
+
+        <h2>
+            Waste Energy Calculator
+        </h2>
+
+    </div>
+
+
+    <div class="calculator">
+
+        <label>
+            Select Waste Type
+        </label>
+
+        <select id="wasteType">
+
+            <option value="0.15">
+                Organic Waste
+            </option>
+
+            <option value="0.35">
+                Agricultural Biomass
+            </option>
+
+            <option value="0.45">
+                Paper and Cardboard
+            </option>
+
+            <option value="0.50">
+                Mixed Combustible Waste
+            </option>
+
+        </select>
+
+
+        <label>
+            Waste Quantity (kg)
+        </label>
+
+        <input
+            type="number"
+            id="quantity"
+            placeholder="Example: 100"
+        >
+
+
+        <button
+            class="calculate-btn"
+            onclick="calculateEnergy()"
+        >
+            Calculate Energy
+        </button>
+
+
+        <div class="result" id="result">
+
+            <p id="energyResult"></p>
+
+            <p id="co2Result"></p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ENVIRONMENT -->
+
+<section class="environment" id="environment">
+
+    <div class="section-title">
+
+        <h2>
+            Environment Monitor
+        </h2>
+
+    </div>
+
+
+    <div class="environment-container">
+
+        <input
+            type="text"
+            id="city"
+            value="Kakinada"
+            placeholder="Enter city"
+        >
+
+        <button onclick="getAirQuality()">
+            Check Air Quality
+        </button>
+
+
+        <div class="air-result" id="airResult">
+
+            Enter city and check air quality.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- BENEFITS -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>
+            Benefits
+        </h2>
+
+    </div>
+
+
+    <div class="benefits">
+
+
+        <div class="benefit">
+
+            <div class="benefit-icon">
+                ♻️
+            </div>
+
+            <h3>
+                Waste Reduction
+            </h3>
+
+            <p>
+                Helps reduce waste disposal.
+            </p>
+
+        </div>
+
+
+        <div class="benefit">
+
+            <div class="benefit-icon">
+                ⚡
+            </div>
+
+            <h3>
+                Energy Recovery
+            </h3>
+
+            <p>
+                Suitable waste can be converted into energy.
+            </p>
+
+        </div>
+
+
+        <div class="benefit">
+
+            <div class="benefit-icon">
+                🌱
+            </div>
+
+            <h3>
+                Green Future
+            </h3>
+
+            <p>
+                Supports sustainable development.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h2>
+        ♻ GreenVolt
+    </h2>
+
+    <p>
+        Waste Today. Energy Tomorrow.
+    </p>
+
+    <p>
+        HTML • CSS • JavaScript • Open-Meteo API
+    </p>
+
+    <p>
+        © 2026 GreenVolt Educational Project
+    </p>
+
+</footer>
+
+</div>
+
+
+<script>
+
+/* =================================================
+   LOGIN / SIGNUP
+================================================= */
+
+
+/* Show Signup */
+
+function showSignup(){
+
+    document.getElementById("loginPage")
+        .classList.remove("active");
+
+    document.getElementById("signupPage")
+        .classList.add("active");
+
+}
+
+
+/* Show Login */
+
+function showLogin(){
+
+    document.getElementById("signupPage")
+        .classList.remove("active");
+
+    document.getElementById("loginPage")
+        .classList.add("active");
+
+}
+
+
+/* Signup */
+
+function signup(event){
+
+    event.preventDefault();
+
+
+    let name =
+        document.getElementById("signupName").value;
+
+    let email =
+        document.getElementById("signupEmail").value;
+
+    let password =
+        document.getElementById("signupPassword").value;
+
+    let confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+
+    /* Check password */
+
+    if(password !== confirmPassword){
+
+        alert("Passwords do not match!");
+
+        return;
+
+    }
+
+
+    /* Get existing users */
+
+    let users =
+        JSON.parse(localStorage.getItem("greenVoltUsers"))
+        || [];
+
+
+    /* Check existing email */
+
+    let existingUser =
+        users.find(function(user){
+
+            return user.email === email;
+
+        });
+
+
+    if(existingUser){
+
+        alert("Email already registered!");
+
+        return;
+
+    }
+
+
+    /* Create user */
+
+    let user = {
+
+        name: name,
+
+        email: email,
+
+        password: password
+
+    };
+
+
+    users.push(user);
+
+
+    /* Save users */
+
+    localStorage.setItem(
+        "greenVoltUsers",
+        JSON.stringify(users)
+    );
+
+
+    alert("Signup successful! Please login.");
+
+
+    /* Clear form */
+
+    document.getElementById("signupName").value = "";
+
+    document.getElementById("signupEmail").value = "";
+
+    document.getElementById("signupPassword").value = "";
+
+    document.getElementById("confirmPassword").value = "";
+
+
+    showLogin();
+
+}
+
+
+/* Login */
+
+function login(event){
+
+    event.preventDefault();
+
+
+    let email =
+        document.getElementById("loginEmail").value;
+
+    let password =
+        document.getElementById("loginPassword").value;
+
+
+    let users =
+        JSON.parse(localStorage.getItem("greenVoltUsers"))
+        || [];
+
+
+    let user =
+        users.find(function(u){
+
+            return u.email === email &&
+                   u.password === password;
+
+        });
+
+
+    if(user){
+
+        alert(
+            "Login successful! Welcome " +
+            user.name
+        );
+
+
+        /* Hide login */
+
+        document.getElementById("loginPage")
+            .classList.remove("active");
+
+
+        /* Show website */
+
+        document.getElementById("mainWebsite")
+            .style.display = "block";
+
+
+        /* Clear login */
+
+        document.getElementById("loginEmail").value = "";
+
+        document.getElementById("loginPassword").value = "";
+
+    }
+
+    else{
+
+        alert(
+            "Invalid email or password!"
+        );
+
+    }
+
+}
+
+
+/* Logout */
+
+function logout(){
+
+    document.getElementById("mainWebsite")
+        .style.display = "none";
+
+
+    document.getElementById("loginPage")
+        .classList.add("active");
+
+
+    alert("You have been logged out.");
+
+}
+
+
+/* =================================================
+   IMAGE SLIDER
+================================================= */
+
+let currentSlide = 0;
+
+const slides =
+    document.getElementById("slides");
+
+const dots =
+    document.querySelectorAll(".dot");
+
+const totalSlides =
+    document.querySelectorAll(".slide").length;
+
+const progress =
+    document.getElementById("progress");
+
+
+function showSlide(index){
+
+    if(index >= totalSlides){
+
+        currentSlide = 0;
+
+    }
+
+    else if(index < 0){
+
+        currentSlide = totalSlides - 1;
+
+    }
+
+    else{
+
+        currentSlide = index;
+
+    }
+
+
+    slides.style.transform =
+        "translateX(-" +
+        (currentSlide * 100) +
+        "%)";
+
+
+    dots.forEach(function(dot,i){
+
+        dot.classList.remove("active");
+
+        if(i === currentSlide){
+
+            dot.classList.add("active");
+
+        }
+
+    });
+
+
+    let percent =
+        ((currentSlide + 1) / totalSlides) * 100;
+
+    progress.style.width =
+        percent + "%";
+
+}
+
+
+function nextSlide(){
+
+    showSlide(currentSlide + 1);
+
+}
+
+
+function previousSlide(){
+
+    showSlide(currentSlide - 1);
+
+}
+
+
+function goToSlide(index){
+
+    showSlide(index);
+
+}
+
+
+/* Automatic slider */
+
+setInterval(function(){
+
+    if(
+        document.getElementById("mainWebsite")
+        .style.display !== "none"
+    ){
+
+        nextSlide();
+
+    }
+
+},4000);
+
+
+/* =================================================
+   CALCULATOR
+================================================= */
+
+let totalWaste = 0;
+
+let totalEnergy = 0;
+
+let totalCO2 = 0;
+
+
+function calculateEnergy(){
+
+    let factor =
+        parseFloat(
+            document.getElementById("wasteType").value
+        );
+
+
+    let quantity =
+        parseFloat(
+            document.getElementById("quantity").value
+        );
+
+
+    if(isNaN(quantity) || quantity <= 0){
+
+        alert("Please enter valid waste quantity.");
+
+        return;
+
+    }
+
+
+    let energy =
+        quantity * factor;
+
+
+    let co2 =
+        energy * 0.4;
+
+
+    totalWaste += quantity;
+
+    totalEnergy += energy;
+
+    totalCO2 += co2;
+
+
+    document.getElementById("energyResult")
+        .innerHTML =
+        "⚡ Energy: <b>" +
+        energy.toFixed(2) +
+        " kWh</b>";
+
+
+    document.getElementById("co2Result")
+        .innerHTML =
+        "🌱 CO₂ Benefit: <b>" +
+        co2.toFixed(2) +
+        " kg</b>";
+
+
+    document.getElementById("result")
+        .style.display = "block";
+
+
+    document.getElementById("wasteTotal")
+        .innerHTML =
+        totalWaste.toFixed(2) + " kg";
+
+
+    document.getElementById("energyTotal")
+        .innerHTML =
+        totalEnergy.toFixed(2) + " kWh";
+
+
+    document.getElementById("co2Total")
+        .innerHTML =
+        totalCO2.toFixed(2) + " kg";
+
+}
+
+
+/* =================================================
+   AIR QUALITY
+================================================= */
+
+async function getAirQuality(){
+
+    let city =
+        document.getElementById("city")
+        .value.trim();
+
+
+    let output =
+        document.getElementById("airResult");
+
+
+    if(city === ""){
+
+        alert("Please enter city name.");
+
+        return;
+
+    }
+
+
+    output.innerHTML =
+        "⏳ Loading...";
+
+
+    try{
+
+        let geoResponse =
+            await fetch(
+                "https://geocoding-api.open-meteo.com/v1/search?name="
+                + encodeURIComponent(city)
+                + "&count=1&language=en&format=json"
+            );
+
+
+        let geoData =
+            await geoResponse.json();
+
+
+        if(
+            !geoData.results ||
+            geoData.results.length === 0
+        ){
+
+            output.innerHTML =
+                "❌ City not found.";
+
+            return;
+
+        }
+
+
+        let location =
+            geoData.results[0];
+
+
+        let airResponse =
+            await fetch(
+                "https://air-quality-api.open-meteo.com/v1/air-quality"
+                + "?latitude=" + location.latitude
+                + "&longitude=" + location.longitude
+                + "&current=us_aqi,european_aqi,pm2_5,pm10,carbon_monoxide,nitrogen_dioxide,ozone"
+            );
+
+
+        let airData =
+            await airResponse.json();
+
+
+        let current =
+            airData.current;
+
+
+        output.innerHTML = `
+
+            <h3>
+                🌍 ${location.name} Air Quality
+            </h3>
+
+            <p>
+                <b>US AQI:</b>
+                ${current.us_aqi ?? "N/A"}
+            </p>
+
+            <p>
+                <b>European AQI:</b>
+                ${current.european_aqi ?? "N/A"}
+            </p>
+
+            <p>
+                <b>PM2.5:</b>
+                ${current.pm2_5 ?? "N/A"} μg/m³
+            </p>
+
+            <p>
+                <b>PM10:</b>
+                ${current.pm10 ?? "N/A"} μg/m³
+            </p>
+
+            <p>
+                <b>Ozone:</b>
+                ${current.ozone ?? "N/A"}
+            </p>
+
+        `;
+
+    }
+
+    catch(error){
+
+        console.log(error);
+
+        output.innerHTML =
+            "❌ Unable to load air quality.";
+
+    }
+
+}
+
+
+/* Start slider */
+
+showSlide(0);
+
+</script>
+
+</body>
+</html>
